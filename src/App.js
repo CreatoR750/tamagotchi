@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import LoginForm from "./pages/LoginForm";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Users from "./pages/Users";
+import TamaStatus from "./pages/TamaStatus";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<LoginForm />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/users" element={<Users />} />
+                    <Route path="/status" element={<TamaStatus/>} />
+                </Routes>
+            </BrowserRouter>
+            <Outlet />
+        </div>
+    );
 }
 
 export default App;

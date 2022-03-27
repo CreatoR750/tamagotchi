@@ -30,7 +30,7 @@ const UserStatusCard = ({ user }) => {
 
             console.log(auth.data.access_token);
             const response = await axios.put(
-                `http://tamagotchi-backend.herokuapp.com/tamagochi/?user_id=${id}`,
+                `https://tamagotchi-backend.herokuapp.com/tamagochi/?user_id=${id}`,
                 { name: "string", gender: "string", game: tama.game, health: tama.health, food: tama.food, sleep: tama.food },
                 {
                     headers: {

@@ -31,7 +31,7 @@ const UserStatusCard = ({ user }) => {
             console.log(auth.data.access_token);
             const response = await axios.put(
                 `https://tamagotchi-backend.herokuapp.com/tamagochi/?user_id=${id}`,
-                { name: "string", gender: "string", game: tama.game, health: tama.health, food: tama.food, sleep: tama.food },
+                { name: "string", gender: "string", game: tama.game, health: tama.health, food: tama.food, sleep: tama.sleep },
                 {
                     headers: {
                         Authorization: `Bearer ${auth.data.access_token}`,
@@ -68,7 +68,7 @@ const UserStatusCard = ({ user }) => {
                     <div className="status">
                         <h4>GENERAL STATE</h4>
                         <div className="state__progress-bar">
-                            <ProgressBar completed={Math.floor(tama.general_state * 100)} bgColor="#00C6E1" height="32px" animateOnRender={true} />{" "}
+                            <ProgressBar completed={Math.round(tama.general_state * 100)} bgColor="#00C6E1" height="32px" animateOnRender={true} />
                         </div>
                     </div>
                     <div className="status">
@@ -76,12 +76,12 @@ const UserStatusCard = ({ user }) => {
                             <img
                                 className="status-change-btn"
                                 src={play}
-                                onClick={() => (tama.game === 1 ? setTama((prev) => prev) : setTama((prev) => ({ ...tama, game: prev.game + 0.1 })))}
+                                onClick={() => (tama.game >= 0.99 ? setTama((prev) => ({ ...tama, game: 1 })) : setTama((prev) => ({ ...tama, game: prev.game + 0.1 })))}
                             />
                         </div>
                         <div className="state__progress-bar">
                             <h3>PLAY</h3>
-                            <ProgressBar completed={Math.floor(tama.game * 100)} bgColor="#C00296" height="32px" animateOnRender={true} />
+                            <ProgressBar completed={Math.round(tama.game * 100)} bgColor="#C00296" height="32px" animateOnRender={true} />
                         </div>
                     </div>
                     <div className="status">
@@ -90,13 +90,13 @@ const UserStatusCard = ({ user }) => {
                                 className="status-change-btn"
                                 src={health}
                                 onClick={() =>
-                                    tama.health === 1 ? setTama((prev) => prev) : setTama((prev) => ({ ...tama, health: prev.health + 0.1 }))
+                                    tama.health >= 0.99 ? setTama((prev) => ({ ...tama, health: 1 })) : setTama((prev) => ({ ...tama, health: prev.health + 0.1 }))
                                 }
                             />
                         </div>
                         <div className="state__progress-bar">
                             <h3>HEALTH</h3>
-                            <ProgressBar completed={Math.floor(tama.health * 100)} bgColor="#F4C31E" height="32px" animateOnRender={true} />
+                            <ProgressBar completed={Math.round(tama.health * 100)} bgColor="#F4C31E" height="32px" animateOnRender={true} />
                         </div>
                     </div>
                     <div className="status">
@@ -104,12 +104,12 @@ const UserStatusCard = ({ user }) => {
                             <img
                                 className="status-change-btn"
                                 src={food}
-                                onClick={() => (tama.food === 1 ? setTama((prev) => prev) : setTama((prev) => ({ ...tama, food: prev.food + 0.1 })))}
+                                onClick={() => (tama.food >= 0.99 ? setTama((prev) => ({ ...tama, food: 1 })) : setTama((prev) => ({ ...tama, food: prev.food + 0.1 })))}
                             />
                         </div>
                         <div className="state__progress-bar">
                             <h3>SATIETY</h3>
-                            <ProgressBar completed={Math.floor(tama.food * 100)} bgColor="#027900" height="32px" animateOnRender={true} />
+                            <ProgressBar completed={Math.round(tama.food * 100)} bgColor="#027900" height="32px" animateOnRender={true} />
                         </div>
                     </div>
                     <div className="status">
@@ -118,13 +118,13 @@ const UserStatusCard = ({ user }) => {
                                 className="status-change-btn"
                                 src={cheer}
                                 onClick={() =>
-                                    tama.sleep === 1 ? setTama((prev) => prev) : setTama((prev) => ({ ...tama, sleep: prev.sleep + 0.1 }))
+                                    tama.sleep >= 0.99 ? setTama((prev) => ({ ...tama, sleep: 1 })) : setTama((prev) => ({ ...tama, sleep: prev.sleep + 0.1 }))
                                 }
                             />
                         </div>
                         <div className="state__progress-bar">
                             <h3>CHEERFULNESS</h3>
-                            <ProgressBar completed={Math.floor(tama.sleep * 100)} bgColor="#3037E3" height="32px" animateOnRender={true} />
+                            <ProgressBar completed={Math.round(tama.sleep * 100)} bgColor="#3037E3" height="32px" animateOnRender={true} />
                         </div>
                     </div>
                 </div>

@@ -33,7 +33,7 @@ const Users = () => {
 
     const receiveChildValue = () => {
         getUsersList();
-      };
+    };
 
     return (
         <div className="">
@@ -48,7 +48,7 @@ const Users = () => {
                             <h3>logged in as {user?.email}</h3>
                         </div>
                         <div className="header__name">
-                            <Button variant="dark" onClick={()=>navigate("/dashboard")}>
+                            <Button variant="dark" onClick={() => navigate("/dashboard")}>
                                 Back
                             </Button>
                         </div>
@@ -59,13 +59,12 @@ const Users = () => {
                 <h1>Users</h1>
                 <div className="users-list-wrapper">
                     {users.length ? (
-                        users.map((user) => {
-                            return <UserCard user={user} updateUsers={receiveChildValue}/>;
+                        users.map((user, index) => {
+                            return <UserCard key={index} user={user} updateUsers={receiveChildValue} />;
                         })
                     ) : (
                         <Spinner animation="border" />
                     )}
-                 
                 </div>
             </div>
             <footer></footer>
